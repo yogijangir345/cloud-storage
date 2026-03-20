@@ -4,22 +4,25 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const fileRoutes = require("./routes/fileRoutes");
 
+const fileRoutes = require("./routes/fileRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const authRoutes = require("./routes/authRoutes");
 const folderRoutes = require("./routes/folder");
 
 const app = express();
 
-// ✅ CORS FIX (important)
+// ✅ FINAL CORS FIX (important)
 app.use(
   cors({
-    origin: "https://cloud-storage-woad.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    origin: "*", // sab allow (testing ke liye best)
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// ✅ preflight request fix (VERY IMPORTANT)
+app.options("*", cors());
 
 // middlewares
 app.use(express.json());
