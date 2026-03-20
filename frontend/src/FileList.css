@@ -1,0 +1,200 @@
+/* FileList.css - Google Drive Style */
+
+/* Container */
+.files-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: "Roboto", sans-serif;
+}
+
+.files-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #202124;
+}
+
+/* Search & filter bar */
+.search-filter {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-filter input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.search-filter select {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Grid layout for files */
+.files-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+/* Individual file card */
+.file-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(60,64,67,0.1), 0 1px 2px rgba(60,64,67,0.1);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.file-card:hover {
+  box-shadow: 0 4px 12px rgba(60,64,67,0.2), 0 2px 6px rgba(60,64,67,0.15);
+  transform: translateY(-3px);
+}
+
+/* File icon */
+.file-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* File name link */
+.file-name {
+  font-size: 14px;
+  color: #1967d2;
+  text-decoration: none;
+  word-break: break-word;
+  margin-bottom: 10px;
+}
+
+.file-name:hover {
+  text-decoration: underline;
+}
+
+/* File actions (Download + Delete) */
+.file-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Download button */
+.download-btn {
+  background: #34a853;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+  background: #0f9d58;
+}
+
+/* Delete button */
+.delete-btn {
+  background: #f28b82;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #d93025;
+}
+
+/* Preview modal */
+.preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.preview-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 80%;
+  position: relative;
+  overflow: auto;
+}
+
+.preview-content img,
+.preview-content iframe,
+.preview-content video {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Empty state */
+.files-grid p {
+  grid-column: 1/-1;
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 500px) {
+  .files-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  .file-icon {
+    font-size: 30px;
+  }
+  .file-name {
+    font-size: 12px;
+  }
+  .download-btn,
+  .delete-btn {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+  .search-filter input,
+  .search-filter select {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}
