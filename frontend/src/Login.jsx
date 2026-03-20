@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 function Login() {
 
   const navigate = useNavigate();
@@ -13,12 +12,14 @@ function Login() {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
 
+  const BASE_URL = "https://cloud-storage-backend.onrender.com";
+
   // ===== REGISTER =====
   const handleRegister = async () => {
 
     try {
 
-      const res = await fetch("http://localhost:5000/api/auth/register", {
+      const res = await fetch(`${BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -45,7 +46,7 @@ function Login() {
 
     try {
 
-      const res = await fetch("http://localhost:5000/api/auth/verify-otp", {
+      const res = await fetch(`${BASE_URL}/api/auth/verify-otp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -60,7 +61,6 @@ function Login() {
       if (data.message === "Email verified successfully") {
 
         setOtpSent(false);
-
         alert("OTP verified. Now login with your email and password.");
 
       }
@@ -76,7 +76,7 @@ function Login() {
 
     try {
 
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -91,15 +91,12 @@ function Login() {
       if (data.message === "Login successful") {
 
         localStorage.setItem("user", JSON.stringify(data.user));
-
         navigate("/dashboard");
 
       }
 
     } catch (error) {
-
       console.log(error);
-
     }
 
   };
