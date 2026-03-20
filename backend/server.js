@@ -12,8 +12,16 @@ const folderRoutes = require("./routes/folder");
 
 const app = express();
 
+// ✅ CORS FIX (important)
+app.use(
+  cors({
+    origin: "https://cloud-storage-woad.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 // middlewares
-app.use(cors());
 app.use(express.json());
 app.use("/api", fileRoutes);
 
