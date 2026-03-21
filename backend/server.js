@@ -15,6 +15,9 @@ app.use(cors({
   credentials: true
 }));
 
+// ✅ IMPORTANT (preflight fix)
+app.options("*", cors());
+
 // middleware
 app.use(express.json());
 
