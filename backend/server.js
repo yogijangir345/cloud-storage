@@ -5,11 +5,18 @@ require("dotenv").config();
 
 const app = express();
 
-// ✅ SIMPLE & SAFE CORS (FINAL)
-app.use(cors({
-  origin: "https://cloud-storage-woad.vercel.app",
-  credentials: true
-}));
+// ✅ IMPORTANT (preflight handle karne ke liye)
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
 
 // middleware
 app.use(express.json());
