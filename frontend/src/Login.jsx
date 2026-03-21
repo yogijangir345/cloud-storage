@@ -10,8 +10,8 @@ function Login() {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
 
-  // ✅ FINAL BASE URL (LIVE BACKEND)
-  const BASE_URL = "https://cloud-storage-backend.onrender.com";
+  // ✅ PROXY BASE URL (FINAL FIX)
+  const BASE_URL = "/api";
 
   // ===== REGISTER =====
   const handleRegister = async (e) => {
@@ -23,7 +23,7 @@ function Login() {
     }
 
     try {
-      const res = await fetch(`${BASE_URL}/api/auth/register`, {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
@@ -50,7 +50,7 @@ function Login() {
     }
 
     try {
-      const res = await fetch(`${BASE_URL}/api/auth/verify-otp`, {
+      const res = await fetch(`${BASE_URL}/auth/verify-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp }),
@@ -78,7 +78,7 @@ function Login() {
     }
 
     try {
-      const res = await fetch(`${BASE_URL}/api/auth/login`, {
+      const res = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
