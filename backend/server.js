@@ -5,18 +5,11 @@ require("dotenv").config();
 
 const app = express();
 
-// ✅ CORS FIX (FINAL WORKING)
+// ✅ SIMPLE & SAFE CORS (FINAL)
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://cloud-storage-woad.vercel.app"
-  ],
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  origin: "https://cloud-storage-woad.vercel.app",
   credentials: true
 }));
-
-// ✅ IMPORTANT (preflight fix)
-app.options("*", cors());
 
 // middleware
 app.use(express.json());
